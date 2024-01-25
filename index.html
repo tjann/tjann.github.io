@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleasantronome</title>
+</head>
+<body>
+    <audio id="audio1" src="assets/background.mp3" loop></audio>
+    <audio id="audio2" src="assets/beat.m4a" loop></audio>
+
+    <h1>Pleasantronome</h1>
+    <button id="playButton">Play Audio</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const audio1 = document.getElementById('audio1');
+            const audio2 = document.getElementById('audio2');
+            const playButton = document.getElementById('playButton');
+
+            // Function to play both audio clips
+            function playAudio() {
+                audio1.play();
+                audio2.play();
+            }
+
+            // Function to pause both audio clips
+            function pauseAudio() {
+                audio1.pause();
+                audio2.pause();
+            }
+
+            // Event listener for the play button
+            playButton.addEventListener('click', function () {
+                playAudio();
+            });
+
+            // Ensure the audio continues to play even when the device is asleep
+            document.addEventListener('visibilitychange', function () {
+                if (document.visibilityState === 'hidden') {
+                    pauseAudio();
+                } else {
+                    playAudio();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
